@@ -31,14 +31,18 @@ const ReviewForm = (props) => {
             >
                 {(formikProps) => (
                     <View>
-                        <TextInput style={globalStyles.input} placeholder='Review Title ...' 
+                        <TextInput style={globalStyles.input} placeholder='Review Title ...' onBlur={formikProps.handleBlur('title')} 
                             onChangeText={formikProps.handleChange('title')} value={formikProps.values.title} />
 
-                        <TextInput style={globalStyles.input} placeholder='Review Comment ...' 
-                            onChangeText={formikProps.handleChange('body')} value={formikProps.values.body} />
+                        <Text style={globalStyles.errMess}>{ formikProps.touched.title && formikProps.errors.title }</Text>
 
-                        <TextInput style={globalStyles.input} placeholder='Rating (1-5) ...' 
+                        <TextInput style={globalStyles.input} placeholder='Review Comment ...' onBlur={formikProps.handleBlur('body')}
+                            onChangeText={formikProps.handleChange('body')} value={formikProps.values.body} />
+                        <Text style={globalStyles.errMess}>{ formikProps.touched.body && formikProps.errors.body }</Text>
+
+                        <TextInput style={globalStyles.input} placeholder='Rating (1-5) ...' onBlur={formikProps.handleBlur('rating')}
                             onChangeText={formikProps.handleChange('rating')} value={formikProps.values.rating} keyboardType='numeric' />
+                        <Text style={globalStyles.errMess}>{ formikProps.touched.rating && formikProps.errors.rating }</Text>
 
                         <Button title='Add Review' color='maroon' onPress={formikProps.handleSubmit} />
                     </View>
